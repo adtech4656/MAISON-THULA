@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAISON THULA - Spa Mental Luxe</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Swiper Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-dark: #0f3d2f;
+            --primary-green: #1b5a42;
+            --secondary-sage: #2d7456;
+            --accent-gold: #d4a574;
+            --light-cream: #f9f6f0;
+            --dark-text: #1a1a1a;
+            --text-light: #666;
+            --white: #ffffff;
+            --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+            --shadow-md: 0 8px 24px rgba(0,0,0,0.15);
+            --shadow-lg: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-cream);
+            color: var(--dark-text);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background: linear-gradient(135deg, rgba(15, 61, 47, 0.98) 0%, rgba(27, 90, 66, 0.98) 100%);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .navbar {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.8rem;
+            color: var(--accent-gold) !important;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .navbar-brand i {
+            font-size: 2rem;
+        }
+        
+        .nav-link {
+            color: var(--light-cream) !important;
+            margin: 0 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-gold);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent-gold) !important;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* ===== HERO SECTION ===== */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            color: var(--light-cream);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -200px;
+            right: -100px;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 300;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+        }
+        
+        .hero-tagline {
+            font-size: 2rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            max-width: 550px;
+            color: rgba(255, 255, 255, 0.95);
+        }
+        
+        .btn-premium {
+            background: linear-gradient(135deg, var(--accent-gold) 0%, #c99d78 100%);
+            color: var(--primary-dark);
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: all 0.4s ease;
+            border-radius: 50px;
+            text-transform: uppercase;
+            box-shadow: 0 8px 25px rgba(212, 165, 116, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+        
+        .btn-premium:hover {
+            background: linear-gradient(135deg, #c99d78 0%, var(--accent-gold) 100%);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.4);
+        }
+        
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+        
+        /* ===== HERO SLIDER ===== */
+        .hero-slider {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 100%;
+            z-index: 1;
+        }
+        
+        .swiper-slide {
+            overflow: hidden;
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7);
+        }
+        
+        .swiper-pagination-bullet {
+            background: var(--accent-gold) !important;
+            opacity: 0.7 !important;
+            transition: all 0.3s ease;
+        }
+        
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+            width: 30px !important;
+            border-radius: 10px !important;
+        }
+        
+        /* ===== LUXURY BRANDING SECTION ===== */
+        .luxury-branding {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            padding: 80px 0;
+            color: var(--light-cream);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .branding-logo {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.2) 0%, rgba(45, 116, 86, 0.2) 100%);
+            border: 2px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            box-shadow: inset 0 0 30px rgba(212, 165, 116, 0.1);
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { box-shadow: inset 0 0 30px rgba(212, 165, 116, 0.1), 0 0 0 rgba(212, 165, 116, 0); }
+            50% { box-shadow: inset 0 0 30px rgba(212, 165, 116, 0.2), 0 0 30px rgba(212, 165, 116, 0.3); }
+        }
+        
+        .branding-logo img {
+            width: 80%;
+            height: auto;
+        }
+        
+        .luxury-title {
+            font-size: 2.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            border-radius: 20px;
+        }
+        
+        .luxury-subtitle {
+            font-size: 1rem;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .luxury-tagline {
+            font-size: 1.6rem;
+            font-style: italic;
+            color: var(--accent-gold);
+            font-weight: 300;
+        }
+        
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(180deg, var(--light-cream) 0%, rgba(45, 116, 86, 0.05) 100%);
+        }
+        
+        .about h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2.5rem;
+            color: var(--primary-dark);
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .about h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-gold), transparent);
+        }
+        
+        .about-text {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+        
+        .about-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* ===== SERVICES SECTION ===== */
+        .services {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-green) 100%);
+            color: var(--light-cream);
+            position: relative;
+        }
+        
+        .services::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .services h2 {
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .service-card {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(212, 165, 116, 0.3);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 165, 116, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+        
+        .service-card:hover::before {
+            left: 100%;
+        }
+        
+        .service-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(15px);
+            border-color: var(--accent-gold);
+            box-shadow: 0 15px 40px rgba(212, 165, 116, 0.2);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotate(5deg);
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
+        .service-card p {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        /* ===== GALLERY SLIDER ===== */
+        .gallery {
+            padding: 100px 0;
+            background: var(--light-cream);
+        }
+        
+        .gallery h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        
+        .gallery-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        
+        .gallery-slider-container {
+            position: relative;
+        }
+        
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            aspect-ratio: 1;
+            background: var(--primary-green);
+            box-shadow: var(--shadow-md);
+            cursor: grab;
+        }
+        
+        .gallery-item:active {
+            cursor: grabbing;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1) rotate(1deg);
+        }
+        
+        .gallery-item::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 165, 116, 0.3) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .gallery-item:hover::after {
+            opacity: 1;
+        }
+        
+        /* ===== STATS SECTION ===== */
+        .stats {
+            background: linear-gradient(135deg, var(--primary-green), var(--primary-dark));
+            padding: 80px 0;
+            color: var(--light-cream);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stats::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 165, 116, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            right: -150px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 2.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            color: var(--accent-gold);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -2px;
+        }
+        
+        .stat-label {
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        
+        /* ===== TESTIMONIALS SECTION ===== */
+        .testimonials {
+            padding: 100px 0;
+            background: var(--light-cream);
+        }
+        
+        .testimonials h2 {
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: var(--primary-dark);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-align: center;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow-md);
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--accent-gold);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--accent-gold);
+            opacity: 0.3;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.9;
+            font-size: 1rem;
+        }
+        
+        .testimonial-author {
+            color: var(--primary-dark);
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        /* ===== BOOKING SECTION ===== */
+        .booking {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--primary-dark) 100%);
+            padding: 100px 0;
+            color: var(--light-cream);
+        }
+        
+        .booking h2 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: var(--accent-gold);
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .form-control {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--accent-gold);
+            color: var(--light-cream);
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .form-control:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: #ffd700;
+            color: var(--light-cream);
+            box-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
+        }
+        
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--primary-dark);
+            color: var(--light-cream);
+            padding: 4rem 0 1.5rem;
+            border-top: 2px solid var(--accent-gold);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .footer-section {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent-gold);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        
+        .footer-section p,
+        .footer-section a {
+            font-size: 0.95rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-gold);
+            margin-left: 5px;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(212, 165, 116, 0.3);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gold);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+        
+        .social-links a:hover {
+            background: white;
+            transform: translateY(-3px);
+            margin-left: 0;
+        }
+        
+        /* ===== SCROLL TO TOP BUTTON ===== */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--accent-gold), #c99d78);
+            color: var(--primary-dark);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            opacity: 0;
+            z-index: 999;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+            pointer-events: none;
+        }
+        
+        .scroll-to-top.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 165, 116, 0.4);
+        }
+        
+        /* ===== ANIMATIONS ===== */
+        .fade-in {
+            opacity: 0;
+        }
+        
+        .slide-in {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero {
+                margin-top: 60px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-tagline {
+                font-size: 1.4rem;
+            }
+            
+            .hero-slider {
+                position: relative;
+                width: 100%;
+                height: 300px;
+                margin-top: 2rem;
+            }
+            
+            .nav-link {
+                margin: 0.5rem 0;
+            }
+            
+            .about-image img {
+                height: 300px;
+            }
+            
+            .services h2,
+            .about h2,
+            .gallery h2,
+            .testimonials h2,
+            .booking h2 {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#home"><img src="/image/logo.jpg"  width="100px" alt="" />
+                     
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="#about">À Propos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#gallery">Galerie</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#testimonials">Avis</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#booking">Réservation</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Hero Section with Slider -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 hero-content">
+                    <h1 class="fade-in">Là où le Souffle Soigne</h1>
+                    <p class="hero-tagline fade-in">Sanctuary du Bien-Être Mental</p>
+                    <p class="fade-in">Bienvenue dans un univers de détente absolue. Maison Thula est votre refuge personnel pour retrouver l'équilibre entre le corps et l'esprit. Chaque soin est une invitation à la transformation.</p>
+                    <button class="btn btn-premium fade-in" onclick="document.getElementById('booking').scrollIntoView({behavior: 'smooth'})">Réservez Maintenant</button>
+                </div>
+                <div class="col-lg-7">
+                    <div class="hero-slider">
+                        <div class="swiper heroSwiper">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide">
+                                    <img src="/image/luxury-spa-massage-therapy-woman.jpg" alt="Massage Luxe">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="/image/aromatherapy-massage-spa-oils.jpg" alt="Aromathérapie">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="/image/hot-stone-therapy-spa-relaxation.jpg" alt="Thérapie aux Pierres">
+                                </div>
+                                <div class="swiper-slide">
+                                    <img src="/image/sound-healing-meditation-spa.jpg" alt="Méditation Sonore">
+                                </div>
+                            </div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Luxury Branding Section -->
+    <section class="luxury-branding">
+        <div class="container text-center">
+            <div class="branding-logo">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <h2 class="luxury-title">MAISON THULA</h2>
+            <div class="luxury-subtitle">Spa Mental - Bien-Être Holistique</div>
+            <div class="luxury-tagline">« Où le Souffle Soigne... »</div>
+        </div>
+    </section>
+    
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="slide-in">Pourquoi Maison Thula ?</h2>
+                    <p class="about-text slide-in">Maison Thula est un sanctuaire de paix intérieure, un lieu où l'esprit se repose, le corps respire et l'âme se reconnecte à la nature. Le mot Thula, issu de la sagesse zouloue, signifie : silence, calme, sois en paix.</p>
+                    <p class="about-text slide-in">Dans un monde saturé de bruits et d'exigences, nous ouvrons un espace unique pour apaiser le mental et ressourcer l'être. Chaque parcours, chaque souffle, chaque silence devient un soin précieux.</p>
+                    <p class="about-text slide-in">Notre philosophie repose sur l'harmonie totale entre le corps, l'esprit et l'âme, en utilisant les meilleures techniques de bien-être et les produits naturels les plus purs.</p>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-image">
+                        <img src="/image/spa-wellness-woman-meditation.jpg" alt="Bien-Être à Maison Thula">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="text-center">Nos Services Prestigieux</h2>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="service-card slide-in">
+                        <div class="service-icon"><i class="fas fa-hands"></i></div>
+                        <h3>Massage Suédois Luxe</h3>
+                        <p>Soulage la tension et le stress avec nos techniques classiques de massage suédois. Conçu pour améliorer la circulation et favoriser une détente profonde.</p>
+                    </div>
+                    <div class="service-card slide-in">
+                        <div class="service-icon"><i class="fas fa-gem"></i></div>
+                        <h3>Thérapie aux Pierres Chaudes</h3>
+                        <p>Ciblage des tensions musculaires profondes avec notre traitement spécialisé aux pierres. Parfait pour la récupération et le rajeunissement.</p>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="service-card slide-in">
+                        <div class="service-icon"><i class="fas fa-droplet"></i></div>
+                        <h3>Séances d'Aromathérapie</h3>
+                        <p>Immergez-vous dans le pouvoir curatif des huiles essentielles premium. Nos séances favorisent l'équilibre émotionnel et la clarté mentale.</p>
+                    </div>
+                    <div class="service-card slide-in">
+                        <div class="service-icon"><i class="fas fa-heart"></i></div>
+                        <h3>Bien-Être Holistique</h3>
+                        <p>Expérience complète de bien-être combinant méditation, massage et coaching de pleine conscience pour la restauration totale du corps et de l'esprit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Satisfaction Client</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Années d'Expérience</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Thérapeutes Experts</div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Support Disponible</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section with Slider -->
+    <section class="gallery" id="gallery">
+        <div class="container">
+            <h2>Notre Sanctuaire Luxe</h2>
+            <p class="gallery-subtitle">Découvrez nos espaces de bien-être enchanteurs</p>
+            <div class="gallery-slider-container">
+                <div class="swiper gallerySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/aromatherapy-massage-spa-oils.jpg" alt="Salle de Massage">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/luxury-facial-spa-treatment.jpg" alt="Soin du Visage">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/sound-healing-meditation-spa.jpg" alt="Méditation">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/luxury-spa-massage-therapy-woman.jpg" alt="Aromathérapie">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/hot-stone-therapy-spa-relaxation.jpg" alt="Piscine">
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="gallery-item">
+                                <img src="/image/spa-wellness-woman-meditation.jpg" alt="Espace Zen">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>Voix de Nos Clients</h2>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="testimonial-card slide-in">
+                        <p class="testimonial-text">« MAISON THULA n'est pas un simple spa. C'est un voyage intérieur, un rituel de renaissance. La nature y devient un miroir de notre transformation. »</p>
+                        <p class="testimonial-author">— Sophie Martinique</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card slide-in">
+                        <p class="testimonial-text">« J'ai visité de nombreux spas, mais rien ne se compare à l'approche holistique et aux soins authentiques de Maison Thula. Exceptionnel ! »</p>
+                        <p class="testimonial-author">— Jean Leclerc</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="testimonial-card slide-in">
+                        <p class="testimonial-text">« Un vrai sanctuaire pour le corps et l'esprit. Chaque visite me laisse complètement restauré et en paix avec moi-même. »</p>
+                        <p class="testimonial-author">— Marie Dupont</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Booking Section -->
+    <section class="booking" id="booking">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2>Réservez Votre Soin</h2>
+                    <p>Offrez-vous le cadeau du calme et du bien-être avec nos traitements spa experts. Réservez votre séance dès maintenant et commencez votre transformation.</p>
+                </div>
+                <div class="col-lg-6">
+                    <form id="bookingForm">
+                        <input type="text" class="form-control" placeholder="Votre Nom Complet" required>
+                        <input type="email" class="form-control" placeholder="Votre Email" required>
+                        <input type="tel" class="form-control" placeholder="Numéro de Téléphone" required>
+                        <select class="form-control" required>
+                            <option value="">Sélectionnez un Soin</option>
+                            <option value="swedish">Massage Suédois Luxe</option>
+                            <option value="stones">Thérapie aux Pierres Chaudes</option>
+                            <option value="aroma">Séances d'Aromathérapie</option>
+                            <option value="holistic">Bien-Être Holistique</option>
+                        </select>
+                        <input type="date" class="form-control" required>
+                        <button type="submit" class="btn btn-premium w-100">Confirmer Réservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-3 footer-section">
+                    <h3><i class="fas fa-leaf"></i> MAISON THULA</h3>
+                    <p>Votre sanctuaire pour le bien-être et la rajeunissement total. Là où le souffle soigne...</p>
+                </div>
+                <div class="col-md-3 footer-section">
+                    <h3>Liens Rapides</h3>
+                    <a href="#about">À Propos</a><br>
+                    <a href="#services">Services</a><br>
+                    <a href="#gallery">Galerie</a><br>
+                    <a href="#booking">Réservation</a>
+                </div>
+                <div class="col-md-3 footer-section">
+                    <h3>Contact</h3>
+                    <p>Email: info@maisonthula.com<br>
+                    Téléphone: +225 05 65 45 27 68<br>
+                    Adresse: Abidjan Cocody Attoban</p>
+                </div>
+                <div class="col-md-3 footer-section">
+                    <h3>Nous Suivre</h3>
+                    <div class="social-links">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MAISON THULA - Spa Mental. Tous droits réservés. « Là où le Souffle Soigne... »</p>
+                <p>Conception et développement par <a href="mailto:adtechprofessional@gmail.com">adtechpro</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTopBtn"><i class="fas fa-arrow-up"></i></button>
+    
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Main JavaScript -->
+    <script>
+        // Register GSAP plugins
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // ===== HERO SLIDER =====
+        const heroSwiper = new Swiper('.heroSwiper', {
+            loop: true,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.heroSwiper .swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            effect: 'fade',
+            fadeEffect: {
+                crossFade: true
+            },
+            speed: 1000,
+        });
+        
+        // ===== GALLERY SLIDER =====
+        const gallerySwiper = new Swiper('.gallerySwiper', {
+            loop: true,
+            slidesPerView: 1,
+            spaceBetween: 20,
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: '.gallerySwiper .swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.gallerySwiper .swiper-button-next',
+                prevEl: '.gallerySwiper .swiper-button-prev',
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 25,
+                }
+            }
+        });
+        
+        // ===== HERO ANIMATIONS =====
+        gsap.to('.hero .fade-in', {
+            duration: 1,
+            opacity: 1,
+            y: 0,
+            stagger: 0.2,
+            delay: 0.3,
+            ease: 'power3.out'
+        });
+        
+        // ===== LUXURY BRANDING ANIMATIONS =====
+        gsap.from('.luxury-branding', {
+            scrollTrigger: {
+                trigger: '.luxury-branding',
+                start: 'top 80%',
+            },
+            duration: 1,
+            opacity: 0,
+            y: 50,
+        });
+        
+        gsap.to('.branding-logo', {
+            scrollTrigger: {
+                trigger: '.luxury-branding',
+                start: 'top 80%',
+            },
+            duration: 1.2,
+            rotation: 360,
+            opacity: 1,
+        });
+        
+        // ===== SCROLL ANIMATIONS FOR SLIDE-IN ELEMENTS =====
+        gsap.utils.toArray('.slide-in').forEach((element, index) => {
+            gsap.to(element, {
+                scrollTrigger: {
+                    trigger: element,
+                    start: 'top 85%',
+                },
+                duration: 0.8,
+                opacity: 1,
+                y: 0,
+                delay: index * 0.1,
+                ease: 'power3.out'
+            });
+        });
+        
+        // ===== SERVICE CARDS ADVANCED ANIMATION =====
+        gsap.utils.toArray('.service-card').forEach((card, index) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: '.services',
+                    start: 'top 70%',
+                },
+                duration: 0.9,
+                opacity: 1,
+                x: 0,
+                delay: index * 0.15,
+                ease: 'power2.out'
+            });
+        });
+        
+        // Service cards hover animation
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, { 
+                    duration: 0.3, 
+                    y: -12, 
+                    boxShadow: '0 15px 40px rgba(212, 165, 116, 0.4)',
+                    ease: 'power2.out'
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { 
+                    duration: 0.3, 
+                    y: 0, 
+                    boxShadow: 'none',
+                    ease: 'power2.out'
+                });
+            });
+        });
+        
+        // ===== STATS ANIMATION WITH COUNTERS =====
+        gsap.utils.toArray('.stat-number').forEach((stat, index) => {
+            let value = parseInt(stat.textContent);
+            gsap.from(stat, {
+                scrollTrigger: {
+                    trigger: '.stats',
+                    start: 'top 80%',
+                },
+                duration: 2,
+                opacity: 0,
+                scale: 0.5,
+                delay: index * 0.1,
+            });
+        });
+        
+        // ===== GALLERY ITEMS ANIMATION =====
+        gsap.utils.toArray('.gallery-item').forEach((item, index) => {
+            gsap.to(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: 'top 85%',
+                },
+                duration: 0.8,
+                opacity: 1,
+                scale: 1,
+                delay: index * 0.08,
+                ease: 'power2.out'
+            });
+        });
+        
+        // ===== TESTIMONIAL CARDS ANIMATION =====
+        gsap.utils.toArray('.testimonial-card').forEach((card, index) => {
+            gsap.to(card, {
+                scrollTrigger: {
+                    trigger: '.testimonials',
+                    start: 'top 70%',
+                },
+                duration: 0.8,
+                opacity: 1,
+                y: 0,
+                delay: index * 0.15,
+                ease: 'power2.out'
+            });
+        });
+        
+        // ===== SCROLL TO TOP BUTTON =====
+        const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                scrollToTopBtn.classList.add('active');
+                gsap.to(scrollToTopBtn, { 
+                    duration: 0.3, 
+                    opacity: 1, 
+                    pointerEvents: 'auto',
+                    ease: 'power2.out'
+                });
+            } else {
+                scrollToTopBtn.classList.remove('active');
+                gsap.to(scrollToTopBtn, { 
+                    duration: 0.3, 
+                    opacity: 0, 
+                    pointerEvents: 'none',
+                    ease: 'power2.out'
+                });
+            }
+        });
+        
+        scrollToTopBtn.addEventListener('click', () => {
+            gsap.to(window, {
+                duration: 1.2,
+                scrollTo: 0,
+                ease: 'power3.inOut'
+            });
+        });
+        
+        // ===== FORM SUBMISSION ANIMATION =====
+        const bookingForm = document.getElementById('bookingForm');
+        bookingForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            gsap.to(this, {
+                duration: 0.6,
+                opacity: 0,
+                y: 30,
+                ease: 'back.in',
+                onComplete: () => {
+                    this.innerHTML = '<div style="text-align: center; color: var(--light-cream);"><h3 style="color: var(--accent-gold); margin-bottom: 1rem; font-size: 1.8rem;"><i class="fas fa-check-circle"></i> Merci !</h3><p style="font-size: 1.05rem;">Nous vous contacterons bientôt pour confirmer votre réservation. Préparez-vous à l\'expérience Maison Thula.</p></div>';
+                    gsap.to(this, {
+                        duration: 0.6,
+                        opacity: 1,
+                        y: 0,
+                        ease: 'back.out'
+                    });
+                }
+            });
+        });
+        
+        // ===== NAVBAR SCROLL EFFECT =====
+        let lastScrollTop = 0;
+        const navbar = document.querySelector('header');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                gsap.to(navbar, { 
+                    duration: 0.3, 
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
+                    ease: 'power2.out'
+                });
+            } else {
+                gsap.to(navbar, { 
+                    duration: 0.3, 
+                    boxShadow: 'var(--shadow-md)',
+                    ease: 'power2.out'
+                });
+            }
+            lastScrollTop = window.scrollY;
+        });
+        
+        // ===== SMOOTH ANCHOR LINKS =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#' && document.querySelector(href)) {
+                    e.preventDefault();
+                    gsap.to(window, {
+                        duration: 1,
+                        scrollTo: href,
+                        ease: 'power2.inOut',
+                        offset: -70
+                    });
+                }
+            });
+        });
+        
+        // ===== PARALLAX EFFECT ON ABOUT IMAGE =====
+        gsap.to('.about-image img', {
+            scrollTrigger: {
+                trigger: '.about-image',
+                start: 'top 60%',
+                end: 'bottom 60%',
+                scrub: 1,
+            },
+            y: -50,
+        });
+        
+        // ===== TEXT REVEAL ANIMATION =====
+        gsap.registerEffect({
+            name: 'textReveal',
+            effect: (targets, config) => {
+                return gsap.to(targets, {
+                    opacity: 1,
+                    y: 0,
+                    stagger: 0.05,
+                    duration: config.duration || 0.6,
+                });
+            },
+            extendTimeline: true,
+            defaults: { duration: 0.6 }
+        });
+    </script>
+</body>
+
+</html>
